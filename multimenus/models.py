@@ -7,6 +7,7 @@ from parler.models import TranslatableModel, TranslatedFields
 from treebeard.mp_tree import MP_Node
 
 from . import enums
+from .fields import URLField
 
 
 class MenuItem(TranslatableModel, MP_Node):
@@ -24,7 +25,7 @@ class MenuItem(TranslatableModel, MP_Node):
         null=True,
         blank=True
     )
-    url = models.URLField(null=True, blank=True)
+    url = URLField(null=True, blank=True)
     target = models.CharField(
         verbose_name=_('Target'),
         choices=enums.TARGET_CHOICES,
