@@ -2,6 +2,7 @@ from classytags.arguments import Argument, MultiKeywordArgument
 from classytags.core import Options
 from classytags.helpers import InclusionTag
 from django import template
+from django.db.models.signals import post_save
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.cache import cache
 from django.utils.translation import get_language
