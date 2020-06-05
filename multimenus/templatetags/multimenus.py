@@ -68,4 +68,4 @@ def clear_cache(sender, instance, **kwargs):
         pass
 
 
-post_save.connect(clear_cache, sender=Menu)
+post_save.connect(clear_cache, sender=MenuItem)
