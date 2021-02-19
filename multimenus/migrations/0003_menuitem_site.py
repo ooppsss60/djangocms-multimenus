@@ -9,7 +9,10 @@ import django.db.models.deletion
 
 def get_first_site_id():
     try:
-        return Site.objects.all()[0].pk
+        site = Site.objects.all().first()
+        if site:
+            return site.pk
+        return 0
     except Site.DoesNotExist:
         raise Exception("Multimenus required sites framework with at least one site added.")
 
