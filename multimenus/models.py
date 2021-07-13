@@ -12,31 +12,31 @@ from .fields import URLField
 
 class MenuItem(TranslatableModel, MP_Node):
     translations = TranslatedFields(
-        title=models.CharField(verbose_name=_('Title'), max_length=255)
+        title=models.CharField(verbose_name=_("Title"), max_length=255)
     )
     site = models.ForeignKey(Site, on_delete=models.CASCADE)
     menu_id = models.CharField(
         blank=True,
         max_length=255,
-        help_text=_('Template tags refers to Menu ID.'),
-        verbose_name=_('Menu ID'))
-    page = PageField(
-        verbose_name=_('Page'),
-        null=True,
-        blank=True
+        help_text=_("Template tags refers to Menu ID."),
+        verbose_name=_("Menu ID"),
     )
+    page = PageField(verbose_name=_("Page"), null=True, blank=True)
     url = models.CharField(max_length=300, null=True, blank=True)
+
+    is_highlighted = models.BooleanField(default=False)
+
     target = models.CharField(
-        verbose_name=_('Target'),
+        verbose_name=_("Target"),
         choices=enums.TARGET_CHOICES,
         blank=True,
-        max_length=255
+        max_length=255,
     )
 
     class Meta:
-        ordering = ('path', )
-        verbose_name = _('menu item')
-        verbose_name_plural = _('menu items')
+        ordering = ("path",)
+        verbose_name = _("menu item")
+        verbose_name_plural = _("menu items")
 
     def __str__(self):
         return self.title
