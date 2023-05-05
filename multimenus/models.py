@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from cms.models.fields import PageField
 from parler.models import TranslatableModel, TranslatedFields
+from parler.cache import _delete_cached_translations
 from treebeard.mp_tree import MP_Node
 
 from . import enums
@@ -52,3 +53,7 @@ class MenuItem(TranslatableModel, MP_Node):
         current_site = Site.objects.get_current()
         self.site = current_site
         return super().save(*args, **kwargs)
+        
+    def delete(self, *args, **kwargs):
+        _delete_cached_translations(self)
+        self.__class__.objects.filter(pk=self.pk).delete()
