@@ -14,7 +14,7 @@ from .models import MenuItem
 class MenuItemAdmin(AllTranslationsMixin, TranslatableAdmin, TreeAdmin):
     fieldsets = (
         (None, {'fields': ('title', 'menu_id')}),
-        (_('Link'), {'fields': ('page', 'url', 'target', )}),
+        (_('Link'), {'fields': ('page', 'url', 'target',  "is_highlighted")}),
         (_('Tree position'), {'fields': ('_position', '_ref_node_id')}),
     )
     form = MenuItemAdminForm
